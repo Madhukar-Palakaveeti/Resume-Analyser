@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "resume-analyser"
+version = "0.1.0"
+description = ""
+authors = ["Madhukar Palakaveeti <madhupalakaveeti@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+openai = "^1.13.3"
+flask = "^3.0.2"
+pypdf2 = "^3.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

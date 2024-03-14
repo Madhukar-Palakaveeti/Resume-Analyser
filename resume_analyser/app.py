@@ -1,10 +1,11 @@
 from openai import OpenAI
 from flask import Flask, session, render_template, request, flash, redirect, url_for
-from PyPDF2 import PdfReader
+import fitz
 
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'doc', 'docx'}
 app = Flask(__name__)
+client = OpenAI()
 app.secret_key = "dvmsioadjlf"
 
 def allowed_file(filename):
@@ -26,17 +27,29 @@ def analyse():
                 return redirect(url_for('index'))
             
             if file and allowed_file(file.filename):
-                file.save(f'D:/Python/projects/resume_analyser/resume_analyser/resume_analyser/resumes/{file.filename}')
+                file.save(f'D:/Python/projects/Resume-Analyser/resume_analyser/resumes/{file.filename}')
                 
                 resume_text = session.get('text')
-                reader =  PdfReader(f'D:/Python/projects/resume_analyser/resume_analyser/resume_analyser/resumes/{file.filename}')
-                for i in range(len(reader.pages)):
-                    resume_text += reader.pages[i].extract_text()
+                
+                my_path = f'D:/Python/projects/Resume-Analyser/resume_analyser/resumes/{file.filename}'
+                doc = fitz.open(my_path)
+                for page in doc:
+                    resume_text += page.get_text()
 
-                return resume_text
+                response = client.chat.completions.create(
+                    model= "gpt-3.5-turbo",
+                    messages=[
+                        {"role" : "user",
+                         "content" : resume_text + "Give me a feedback on the resume.Please focus more on the technical skills and which role it suits more.",
+                        }                   
+                    ]
+                )
+
+            return response.choices[0].message.content 
+
         else:
             flash('No file provided!')
             return redirect(url_for('index'))
     session.clear()
 
-app.run(debug=True).
+app.run(debug=True)

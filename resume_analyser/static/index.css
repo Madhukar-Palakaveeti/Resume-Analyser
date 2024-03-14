@@ -1,0 +1,68 @@
+body {
+    background-color: #dddddd; /* Light gray background */
+    color: black;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#loading {
+    display: none; /* Hide loading spinner initially */
+}
+
+#content {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+input[type="file"] {
+    margin-bottom: 20px;
+}
+
+input[type="submit"]{
+    margin: 10px auto; 
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#result {
+    margin-top: 20px;
+    background-color: #f3f4f6; /* Light gray background */
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 10px;
+    padding: 15px;
+    text-align: left;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+#result p {
+    margin: 0; /* Remove default margin */
+    color: #333; /* Dark text color */
+    line-height: 1.5; /* Adjust line height for readability */
+}
+
+
+#clear {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#clear:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}

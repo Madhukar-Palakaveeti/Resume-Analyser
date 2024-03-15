@@ -8,7 +8,10 @@ body {
 
 #loading {
     display: none; /* Hide loading spinner initially */
+    text-align: center;
+    
 }
+
 
 #content {
     width: 50%;

@@ -29,13 +29,13 @@ def analyse(result=None):
             
             if file and allowed_file(file.filename):
                 resume_text = session.get('text')
-                file.save(f'D:/Python/projects/Resume-Analyser/resume_analyser/resumes/{file.filename}')
+                file.save(f'resume_analyser/resumes/{file.filename}')
                 if file.filename.rsplit('.', 1)[1].lower() in ['doc', 'docx'] :
                     doc = Document(f'D:/Python/projects/Resume-Analyser/resume_analyser/resumes/{file.filename}')
                     resume_text +=  '\n'.join([p.text for p in doc.paragraphs])
 
                 else:
-                    my_path = f'D:/Python/projects/Resume-Analyser/resume_analyser/resumes/{file.filename}'
+                    my_path = f'resume_analyser/resumes/{file.filename}'
                     doc = fitz.open(my_path)
                     for page in doc:
                         resume_text += page.get_text()
